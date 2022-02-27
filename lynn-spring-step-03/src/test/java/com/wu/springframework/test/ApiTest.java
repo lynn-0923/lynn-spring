@@ -23,7 +23,7 @@ public class ApiTest {
         final BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
-        final UserService userService = (UserService) beanFactory.getBean("userService", "小高");
+        final UserService userService = (UserService) beanFactory.getBean("userService", "小吴");
 
         userService.queryUserInfo();
     }
@@ -39,7 +39,7 @@ public class ApiTest {
                 return super.hashCode();
             }
         });
-        final Object object = enhancer.create(new Class[]{String.class}, new Object[]{"小高"});
+        final Object object = enhancer.create(new Class[]{String.class}, new Object[]{"小吴"});
         System.out.println(object);
     }
 
@@ -53,7 +53,7 @@ public class ApiTest {
     public void test_Constructor() throws IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         final Class<UserService> userServiceClass = UserService.class;
         final Constructor<UserService> declaredConstructor = userServiceClass.getDeclaredConstructor(String.class);
-        final UserService userService = declaredConstructor.newInstance("小高");
+        final UserService userService = declaredConstructor.newInstance("小吴");
         System.out.println(userService);
     }
 
@@ -69,7 +69,7 @@ public class ApiTest {
             }
         }
         final Constructor<UserService> declaredConstructor = beanClass.getDeclaredConstructor(constructor.getParameterTypes());
-        final UserService userService = declaredConstructor.newInstance("小高");
+        final UserService userService = declaredConstructor.newInstance("小吴");
         System.out.println(userService);
     }
 }

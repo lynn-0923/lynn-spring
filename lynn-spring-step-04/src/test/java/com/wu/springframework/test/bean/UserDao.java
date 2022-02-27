@@ -12,7 +12,7 @@ public class UserDao {
     private static Map<String, String> hashMap = new HashMap<>();
 
     static {
-        hashMap.put("10001", "小高");
+        hashMap.put("10001", "小吴");
         hashMap.put("10002", "小吴");
     }
 
