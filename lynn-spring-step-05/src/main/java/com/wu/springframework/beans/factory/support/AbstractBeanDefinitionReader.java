@@ -11,22 +11,22 @@ import com.wu.springframework.core.io.ResourceLoader;
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
-    private final BeanDefinitionRegister register;
+    private final BeanDefinitionRegistry registry;
 
     private ResourceLoader resourceLoader;
 
-    public AbstractBeanDefinitionReader(BeanDefinitionRegister register) {
-        this(register, new DefaultResourceLoader());
+    protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {
+        this(registry, new DefaultResourceLoader());
     }
 
-    public AbstractBeanDefinitionReader(BeanDefinitionRegister beanDefinitionRegister, ResourceLoader resourceLoader) {
-        this.register = beanDefinitionRegister;
+    public AbstractBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader) {
+        this.registry = registry;
         this.resourceLoader = resourceLoader;
     }
 
     @Override
-    public BeanDefinitionRegister getRegister() {
-        return register;
+    public BeanDefinitionRegistry getRegistry() {
+        return registry;
     }
 
     @Override

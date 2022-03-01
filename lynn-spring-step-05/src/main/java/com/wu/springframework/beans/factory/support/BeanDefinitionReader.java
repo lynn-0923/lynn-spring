@@ -10,7 +10,7 @@ import com.wu.springframework.core.io.ResourceLoader;
  */
 public interface BeanDefinitionReader {
 
-    BeanDefinitionRegister getRegister();
+    BeanDefinitionRegistry getRegistry();
 
     ResourceLoader getResourceLoader();
 

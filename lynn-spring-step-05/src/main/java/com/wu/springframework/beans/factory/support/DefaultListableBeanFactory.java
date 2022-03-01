@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2022/3/1
  */
 public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFactory
-        implements BeanDefinitionRegister, ConfigurableListableBeanFactory {
+        implements BeanDefinitionRegistry, ConfigurableListableBeanFactory {
 
     private Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
 

@@ -7,7 +7,7 @@ import com.wu.springframework.beans.factory.config.BeanDefinition;
  * @author wl
  * @date 2022/3/1
  */
-public interface BeanDefinitionRegister {
+public interface BeanDefinitionRegistry {
 
     /**
      * 向注册表中注册 BeanDefinition
