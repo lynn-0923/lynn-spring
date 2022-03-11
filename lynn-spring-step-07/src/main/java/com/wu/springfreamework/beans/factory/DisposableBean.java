@@ -6,5 +6,5 @@ package com.wu.springfreamework.beans.factory;
  */
 public interface DisposableBean {
 
-    void destroy();
+    void destroy() throws Exception;
 }

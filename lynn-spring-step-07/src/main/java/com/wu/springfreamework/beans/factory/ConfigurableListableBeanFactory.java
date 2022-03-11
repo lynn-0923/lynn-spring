@@ -1,5 +1,6 @@
 package com.wu.springfreamework.beans.factory;
 
+import com.wu.springfreamework.beans.BeansException;
 import com.wu.springfreamework.beans.factory.config.AutowireCapableBeanFactory;
 import com.wu.springfreamework.beans.factory.config.BeanDefinition;
 import com.wu.springfreamework.beans.factory.config.BeanPostProcessor;
@@ -11,10 +12,11 @@ import com.wu.springfreamework.beans.factory.config.ConfigurableBeanFactory;
  */
 public interface ConfigurableListableBeanFactory extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
 
-    BeanDefinition getBeanDefinition(String beanName);
+    BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
-    void preInstantiateSingleton();
+    void preInstantiateSingletons() throws BeansException;
 
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
 }
+

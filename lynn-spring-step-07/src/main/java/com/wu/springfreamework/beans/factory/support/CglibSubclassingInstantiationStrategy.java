@@ -14,7 +14,7 @@ import java.lang.reflect.Constructor;
  * @author Lynn
  * @create 2022/3/10
  */
-public class CglibSubClassingInstantiationStrategy implements InstantiationStrategy {
+public class CglibSubclassingInstantiationStrategy implements InstantiationStrategy {
 
     @Override
     public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor constructor, Object[] args) {

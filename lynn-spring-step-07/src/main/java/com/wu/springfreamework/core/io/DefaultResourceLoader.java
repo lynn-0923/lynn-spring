@@ -13,7 +13,7 @@ import java.net.URL;
  * @author Lynn
  * @create 2022/3/10
  */
-public class DefaultClassLoader implements ResourceLoader {
+public class DefaultResourceLoader implements ResourceLoader {
 
     @Override
     public Resource getResource(String location) {

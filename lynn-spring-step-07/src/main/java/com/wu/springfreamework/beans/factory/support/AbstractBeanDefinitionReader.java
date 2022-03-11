@@ -4,7 +4,7 @@
  */
 package com.wu.springfreamework.beans.factory.support;
 
-import com.wu.springfreamework.core.io.DefaultClassLoader;
+import com.wu.springfreamework.core.io.DefaultResourceLoader;
 import com.wu.springfreamework.core.io.ResourceLoader;
 
 /**
@@ -13,22 +13,22 @@ import com.wu.springfreamework.core.io.ResourceLoader;
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
 
-    private final BeanDefinitionRegister register;
+    private final BeanDefinitionRegistry registry;
 
     private ResourceLoader resourceLoader;
 
-    public AbstractBeanDefinitionReader(BeanDefinitionRegister register) {
-        this(register, new DefaultClassLoader());
+    protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {
+        this(registry, new DefaultResourceLoader());
     }
 
-    public AbstractBeanDefinitionReader(BeanDefinitionRegister register, ResourceLoader resourceLoader) {
-        this.register = register;
+    public AbstractBeanDefinitionReader(BeanDefinitionRegistry registry, ResourceLoader resourceLoader) {
+        this.registry = registry;
         this.resourceLoader = resourceLoader;
     }
 
     @Override
-    public BeanDefinitionRegister getRegister() {
-        return register;
+    public BeanDefinitionRegistry getRegistry() {
+        return registry;
     }
 
     @Override

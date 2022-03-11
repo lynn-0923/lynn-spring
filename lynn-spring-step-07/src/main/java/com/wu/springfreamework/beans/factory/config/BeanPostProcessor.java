@@ -4,14 +4,32 @@
  */
 package com.wu.springfreamework.beans.factory.config;
 
+import com.wu.springfreamework.beans.BeansException;
+
 /**
  * @author Lynn
  * @create 2022/3/10
  */
 public interface BeanPostProcessor {
 
-    Object postProcessorBeforeInitiation();
+    /**
+     * 在 Bean 对象执行初始化方法之前，执行此方法
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
+    Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException;
 
-    Object postProcessorAfterInitiation();
+    /**
+     * 在 Bean 对象执行初始化方法之后，执行此方法
+     *
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
+    Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
 
 }

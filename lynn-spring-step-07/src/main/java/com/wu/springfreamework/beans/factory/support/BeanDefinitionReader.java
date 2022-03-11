@@ -4,6 +4,7 @@
  */
 package com.wu.springfreamework.beans.factory.support;
 
+import com.wu.springfreamework.beans.BeansException;
 import com.wu.springfreamework.core.io.Resource;
 import com.wu.springfreamework.core.io.ResourceLoader;
 
@@ -13,16 +14,17 @@ import com.wu.springfreamework.core.io.ResourceLoader;
  */
 public interface BeanDefinitionReader {
 
-    BeanDefinitionRegister getRegister();
+
+    BeanDefinitionRegistry getRegistry();
 
     ResourceLoader getResourceLoader();
 
-    void loadBeanDefinitions(Resource resource);
+    void loadBeanDefinitions(Resource resource) throws BeansException;
 
-    void loadBeanDefinitions(Resource... resources);
+    void loadBeanDefinitions(Resource... resources) throws BeansException;
 
-    void loadBeanDefinitions(String location);
+    void loadBeanDefinitions(String location) throws BeansException;
 
-    void loadBeanDefinitions(String... locations);
+    void loadBeanDefinitions(String... locations) throws BeansException;
 
 }

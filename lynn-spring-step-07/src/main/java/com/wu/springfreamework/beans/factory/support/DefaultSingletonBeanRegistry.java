@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Lynn
  * @create 2022/3/10
  */
-public class DefaultSingletonBeanRegister implements SingletonBeanRegistry {
+public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     private Map<String, Object> singletonObject = new HashMap<>();
 
