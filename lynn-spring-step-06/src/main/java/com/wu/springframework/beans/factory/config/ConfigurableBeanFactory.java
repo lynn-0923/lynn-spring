@@ -1,6 +1,6 @@
 package com.wu.springframework.beans.factory.config;
 
-import com.wu.springframework.beans.HierarchicalBeanFactory;
+import com.wu.springframework.beans.factory.HierarchicalBeanFactory;
 
 /**
  * @author: Lynn

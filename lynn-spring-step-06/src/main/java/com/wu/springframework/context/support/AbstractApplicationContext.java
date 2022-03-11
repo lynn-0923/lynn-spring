@@ -28,23 +28,23 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         ConfigurableListableBeanFactory beanFactory = getBeanFactory();
 
         // 3. 在 Bean 实例化之前，执行 BeanFactoryPostProcessor (Invoke factory processors registered as beans in the context.)
-        invokeBeanFactoryPostProcessor(beanFactory);
+        invokeBeanFactoryPostProcessors(beanFactory);
 
         // 4. BeanPostProcessor 需要提前于其他 Bean 对象实例化之前执行注册操作
-        registerBeanPostProcessor(beanFactory);
+        registerBeanPostProcessors(beanFactory);
 
         // 5. 提前实例化单例Bean对象
         beanFactory.preInstantiateSingletons();
     }
 
-    private void registerBeanPostProcessor(ConfigurableListableBeanFactory beanFactory) {
+    private void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory beanFactory) {
         Map<String, BeanFactoryPostProcessor> beanFactoryPostProcessorMap = beanFactory.getBeansOfType(BeanFactoryPostProcessor.class);
         for (BeanFactoryPostProcessor beanFactoryPostProcessor : beanFactoryPostProcessorMap.values()) {
             beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
         }
     }
 
-    private void invokeBeanFactoryPostProcessor(ConfigurableListableBeanFactory beanFactory) {
+    private void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFactory) {
         Map<String, BeanPostProcessor> beanPostProcessorMap = beanFactory.getBeansOfType(BeanPostProcessor.class);
         for (BeanPostProcessor beanPostProcessor : beanPostProcessorMap.values()) {
             beanFactory.addBeanPostProcessor(beanPostProcessor);

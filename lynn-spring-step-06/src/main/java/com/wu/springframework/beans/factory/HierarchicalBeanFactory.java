@@ -1,4 +1,4 @@
-package com.wu.springframework.beans;
+package com.wu.springframework.beans.factory;
 
 import com.wu.springframework.beans.factory.BeanFactory;
 
