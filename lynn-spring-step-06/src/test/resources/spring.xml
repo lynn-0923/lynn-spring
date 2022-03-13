@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <beans>
 
     <bean id="userDao" class="com.wu.springframework.test.bean.UserDao"/>
 
     <bean id="userService" class="com.wu.springframework.test.bean.UserService">
-        <property name="uId" value="10001"/>
-        <property name="company" value="腾讯"/>
-        <property name="location" value="深圳"/>
+        <property name="uId" value="10086"/>
+        <property name="company" value="浙江"/>
+        <property name="location" value="杭州"/>
         <property name="userDao" ref="userDao"/>
     </bean>
 
