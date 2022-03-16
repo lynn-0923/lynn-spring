@@ -8,7 +8,6 @@ import com.wu.springframework.apo.AdvisedSupport;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import org.aopalliance.intercept.MethodInvocation;
 
 import java.lang.reflect.Method;
 
@@ -17,40 +16,41 @@ import java.lang.reflect.Method;
  * @create 2022/3/15
  */
 public class Cglib2AopProxy implements AopProxy {
+    private final AdvisedSupport advised;
 
-    private final AdvisedSupport advisedSupport;
-
-    public Cglib2AopProxy(AdvisedSupport advisedSupport) {
-        this.advisedSupport = advisedSupport;
+    public Cglib2AopProxy(AdvisedSupport advised) {
+        this.advised = advised;
     }
 
     @Override
     public Object getProxy() {
         Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(advisedSupport.getTargetSource().getClass());
-        enhancer.setInterfaces(advisedSupport.getTargetSource().getTargetClass());
-        enhancer.setCallback(new DynamicAdvisedInterceptor(advisedSupport));
+        enhancer.setSuperclass(advised.getTargetSource().getTarget().getClass());
+        enhancer.setInterfaces(advised.getTargetSource().getTargetClass());
+        enhancer.setCallback(new DynamicAdvisedInterceptor(advised));
         return enhancer.create();
     }
 
     private static class DynamicAdvisedInterceptor implements MethodInterceptor {
-        private final AdvisedSupport advisedSupport;
 
-        public DynamicAdvisedInterceptor(AdvisedSupport advisedSupport) {
-            this.advisedSupport = advisedSupport;
+        private final AdvisedSupport advised;
+
+        public DynamicAdvisedInterceptor(AdvisedSupport advised) {
+            this.advised = advised;
         }
 
         @Override
         public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-            CglibMethodInvocation cglibMethodInvocation = new CglibMethodInvocation(o, method, objects, methodProxy);
-            if (advisedSupport.getMethodMatcher().matches(method, advisedSupport.getTargetSource().getTarget().getClass())) {
-                return advisedSupport.getMethodInterceptor().invoke(cglibMethodInvocation);
+            CglibMethodInvocation methodInvocation = new CglibMethodInvocation(advised.getTargetSource().getTarget(), method, objects, methodProxy);
+            if (advised.getMethodMatcher().matches(method, advised.getTargetSource().getTarget().getClass())) {
+                return advised.getMethodInterceptor().invoke(methodInvocation);
             }
-            return cglibMethodInvocation.proceed();
+            return methodInvocation.proceed();
         }
     }
 
     private static class CglibMethodInvocation extends ReflectiveMethodInvocation {
+
         private final MethodProxy methodProxy;
 
         public CglibMethodInvocation(Object target, Method method, Object[] arguments, MethodProxy methodProxy) {
